@@ -46,21 +46,27 @@ impl BoardState {
             }
             true
         }
-    } 
+    }
 }
 
 fn main() {
     let board_size: usize = 3;
 
     let mut board = BoardState{ data: Array2D::filled_with(CellState::Empty, board_size, board_size),
-                            next_move: CellState::Player,
+                                next_move: CellState::Player,
     };
     board.print_board();
     println!();
 
-    for _i in 0..9 {
-        let row: usize = read!("{}\n").parse::<usize>().unwrap(); 
-        let column: usize = read!("{}\n").parse::<usize>().unwrap(); 
+    for _i in 0..board_size*board_size {
+
+        print!("Row: ");
+        let row_str: String = read!("{}\n");
+        let row: usize = row_str.parse::<usize>().unwrap();
+
+        print!("Column: ");
+        let column_str: String = read!("{}\n");
+        let column: usize = column_str.parse::<usize>().unwrap();
 
         board.make_move(&row, &column);
         
